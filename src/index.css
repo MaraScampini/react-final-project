@@ -3,11 +3,59 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header {
+  min-height: 7vh;
+}
+
+/* AUTHENTICATION */
+
+.authTitle{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3300c0;
+  font-family: Helvetica, sans-serif;
+}
+
+.authContainer{
+  background-color: #f0ebfc;
+  min-height: 93vh;
+}
+
+#authInput:focus{
+  border-color: #4200FF;
+  box-shadow: 0 0 0 0.25rem #4400ff52 ;
+}
+
+#authButton {
+  background-color: #4200FF;
+}
+
+#authButton:hover{
+  background-color: #3300c0;
+}
+
+.authText {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authLink {
+  color: #0011ff;
+  cursor: pointer;
+  margin-top: -0.5rem;
+}
+
+.authLink:hover{
+  text-decoration: underline;
+}
+
+
+
+.errorInput {
+  color: red;
 }

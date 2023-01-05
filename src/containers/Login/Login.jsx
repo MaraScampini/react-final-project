@@ -141,13 +141,26 @@ const Authentication = ({ type }) => {
 
 
   return (
-    <Container>
-      <Row className="d-flex justify-content-center mt-sm-5">
-        <Col xs="11" md="7">
-          <Form onSubmit={(e) => submitLogin(e)}>
-            <div className="errorInput">{userError.empty}</div>
-            <div className="errorInput">{userError.wrongCredentials}</div>
-            <div className="errorInput">{userError.emailAlreadyInBBDD}</div>
+    <Container fluid className="authContainer">
+      <Row className="d-flex justify-content-center pt-sm-5">
+        <Col xs="11" md="6">
+          <div className="d-flex justify-content-center">
+            {isRegister() ? (
+              <p className="authTitle">Register</p>
+            ) : (
+              <p className="authTitle">Log In</p>
+            )}
+          </div>
+          <Form className="d-flex flex-column" onSubmit={(e) => submitLogin(e)}>
+            <div className="errorInput d-flex justify-content-center">
+              {userError.empty}
+            </div>
+            <div className="errorInput d-flex justify-content-center">
+              {userError.wrongCredentials}
+            </div>
+            <div className="errorInput d-flex justify-content-center">
+              {userError.emailAlreadyInBBDD}
+            </div>
             {isRegister() ? (
               <Form.Group className="mb-3">
                 <Form.Label>Username</Form.Label>
@@ -155,6 +168,7 @@ const Authentication = ({ type }) => {
                   type="text"
                   name="username"
                   placeholder="Enter your username"
+                  id="authInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(e.target.name, e.target.value, "username")
@@ -172,14 +186,12 @@ const Authentication = ({ type }) => {
                 name="email"
                 placeholder="Enter email"
                 value={input.email}
+                id="authInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "email")
                 }
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
               <div className="errorInput">{userError.emailError}</div>
             </Form.Group>
 
@@ -190,6 +202,7 @@ const Authentication = ({ type }) => {
                 name="password"
                 placeholder="Password"
                 value={input.password}
+                id="authInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "password")
@@ -208,6 +221,7 @@ const Authentication = ({ type }) => {
                   type="text"
                   name="password2"
                   placeholder="Enter your password"
+                  id="authInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(

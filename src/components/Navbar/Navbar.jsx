@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NavbarHeader = () => {
   const navigate = useNavigate();
   return (
-    <Navbar collapseOnSelect expand="lg" >
+    <Navbar collapseOnSelect expand="lg" className="header" >
       <Container fluid>
         <Navbar.Brand href="#home">LOGO</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
