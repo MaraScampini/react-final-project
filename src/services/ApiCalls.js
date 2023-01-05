@@ -9,5 +9,5 @@ export const userLogin = async (body) => {
 };
 
 export const userRegister = async (body) => {
-  let res = await axios.post(`${URL}auth/register`, body)
+  await axios.post(`${URL}auth/register`, body)
 }

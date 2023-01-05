@@ -1,4 +1,4 @@
-export const errorCheck = (value, type, password1) => {
+export const errorCheck = (value, type, password) => {
   switch (type) {
     case "text":
       if (!/[a-z]/gi.test(value)) {
@@ -18,7 +18,7 @@ export const errorCheck = (value, type, password1) => {
 
     case "email":
       if (
-        !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           value
         )
       ) {
@@ -47,14 +47,19 @@ export const errorCheck = (value, type, password1) => {
       }
 
     case "password2":
-      if (value !== password1) {
+      if (value !== password) {
         return "Passwords don't match";
       } else {
         return "";
       }
 
+      case "username":
+        if(value.length < 5){
+          return "Username must be at least 5 characters long"
+        }
+        break;
+
     default:
-      console.log("Error");
 
       break;
   }
