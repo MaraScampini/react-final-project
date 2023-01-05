@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { errorCheck } from "../../services/Useful";
 import Button from "react-bootstrap/Button";
@@ -8,6 +8,12 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const Authentication = ({ type }) => {
   const navigate = useNavigate();
+let token = localStorage.getItem("jwt");
+useEffect(() => {
+if (token) {
+  navigate("/");
+}
+}, [])
 
   const [user, setUser] = useState({
     email: "",
@@ -79,10 +85,10 @@ const Authentication = ({ type }) => {
     cleanStates();
     navigate(`/login`);
   };
-    const navigateRegister = () => {
-      cleanStates();
-      navigate(`/register`);
-    };
+  const navigateRegister = () => {
+    cleanStates();
+    navigate(`/register`);
+  };
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -119,8 +125,6 @@ const Authentication = ({ type }) => {
     }
   };
 
-
-
   const inputHandler = (e) => {
     setUser((prevState) => ({
       ...prevState,
@@ -137,8 +141,6 @@ const Authentication = ({ type }) => {
       [field + "Error"]: error,
     }));
   };
-
-
 
   return (
     <Container fluid className="authContainer">
@@ -168,7 +170,7 @@ const Authentication = ({ type }) => {
                   type="text"
                   name="username"
                   placeholder="Enter your username"
-                  id="authInput"
+                  className="authInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(e.target.name, e.target.value, "username")
@@ -186,7 +188,7 @@ const Authentication = ({ type }) => {
                 name="email"
                 placeholder="Enter email"
                 value={input.email}
-                id="authInput"
+                className="authInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "email")
@@ -202,7 +204,7 @@ const Authentication = ({ type }) => {
                 name="password"
                 placeholder="Password"
                 value={input.password}
-                id="authInput"
+                className="authInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "password")
@@ -221,7 +223,7 @@ const Authentication = ({ type }) => {
                   type="text"
                   name="password2"
                   placeholder="Enter your password"
-                  id="authInput"
+                  className="authInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(
