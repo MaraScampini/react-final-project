@@ -1,11 +1,19 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useJwt } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/gym-near-svgrepo-com.svg";
 
 const NavbarHeader = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("jwt");
+
+  const logout = () => {
+    localStorage.removeItem("jwt");
+    navigate("/");
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" className="header">
       <Container fluid>
@@ -18,15 +26,32 @@ const NavbarHeader = () => {
             <Nav className="mx-3 headerLink">Routines</Nav>
             <Nav className="mx-3 headerLink">Exercises</Nav>
           </Nav>
-          <Nav>
-            <Nav className="headerLink mx-3" onClick={() => navigate("/login")}>
-              Log In
+          {token ? (
+            <Nav>
+              <Nav
+                className="headerLink mx-3"
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </Nav>
+              <Nav className="headerLink mx-3" onClick={() => logout()}>
+                Log Out
+              </Nav>
             </Nav>
-          </Nav>
+          ) : (
+            <Nav>
+              <Nav
+                className="headerLink mx-3"
+                onClick={() => navigate("/login")}
+              >
+                Log In
+              </Nav>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavbarHeader;

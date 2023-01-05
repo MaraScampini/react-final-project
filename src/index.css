@@ -29,9 +29,9 @@ body {
   min-height: 93vh;
 }
 
-#authInput:focus{
-  border-color: #4200FF;
-  box-shadow: 0 0 0 0.25rem #4400ff52 ;
+.authInput:focus{
+  border-color: #4200FF !important;
+  box-shadow: 0 0 0 0.25rem #4400ff52 !important;
 }
 
 #authButton {
