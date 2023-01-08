@@ -104,7 +104,7 @@ if (token) {
         });
     } else if (validateBody(body) && type === "register") {
       userRegister(body)
-        .then((login) => console.log(login))
+        .then(navigate("/"))
         .catch((error) => {
           setUserError((prevState) => ({
             ...prevState,
