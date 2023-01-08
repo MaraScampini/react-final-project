@@ -125,9 +125,9 @@ function Profile() {
           <Row className="d-flex justify-content-center py-5 profileRow">
             <Col xs="10" sm="4" lg="3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Edit password</Form.Label>
+                <Form.Label className="lifterText mt-2">Edit password</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="password"
                   type="password"
                   placeholder="Enter your new password"
@@ -162,45 +162,45 @@ function Profile() {
           <Row className="d-flex justify-content-center py-5 profileRow">
             <Col xs="10" sm="4" lg="3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Username</Form.Label>
+                <Form.Label className="lifterText mt-2">Username</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="username"
                   type="text"
                   placeholder="Enter your username"
                   value={editedData.username}
                   onChange={(e) => inputHandler(e)}
                 />
-                <Form.Label>Name</Form.Label>
+                <Form.Label className="lifterText mt-2">Name</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="name"
                   type="text"
                   placeholder="Enter your name"
                   value={editedData.name}
                   onChange={(e) => inputHandler(e)}
                 />
-                <Form.Label>Surname</Form.Label>
+                <Form.Label className="lifterText mt-2">Surname</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="surname"
                   type="text"
                   placeholder="Enter your surname"
                   value={editedData.surname}
                   onChange={(e) => inputHandler(e)}
                 />
-                <Form.Label>Age</Form.Label>
+                <Form.Label className="lifterText mt-2">Age</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="age"
                   type="text"
                   placeholder="Enter your age"
                   value={editedData.age}
                   onChange={(e) => inputHandler(e)}
                 />
-                <Form.Label>Address</Form.Label>
+                <Form.Label className="lifterText mt-2">Address</Form.Label>
                 <Form.Control
-                  className="authInput"
+                  className="lifterInput"
                   name="address"
                   type="text"
                   placeholder="Enter your address"
