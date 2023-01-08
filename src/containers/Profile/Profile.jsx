@@ -107,13 +107,13 @@ function Profile() {
           </Col>
           <Col xs="10" sm="3" className="d-flex flex-column align-items-center">
             <Button
-              className="lifterButton my-2"
+              className="lifterButton my-3"
               onClick={() => setEditing(true)}
             >
               Edit
             </Button>
             <Button
-              className="lifterButton my-2"
+              className="lifterButton my-3"
               onClick={() => setEditingPassword(true)}
             >
               Edit Password
@@ -141,14 +141,14 @@ function Profile() {
               className="d-flex flex-column align-items-center"
             >
               <Button
-                className="lifterButton my-2"
+                className="lifterButton my-3"
                 type="button"
                 onClick={() => setEditingPassword(false)}
               >
                 Back
               </Button>
               <Button
-                className="lifterButton my-2"
+                className="lifterButton my-3"
                 variant="primary"
                 type="submit"
               >
@@ -215,7 +215,7 @@ function Profile() {
               className="d-flex flex-column align-items-center"
             >
               <Button
-                className="lifterButton my-2"
+                className="lifterButton my-3"
                 onClick={() => setEditing(false)}
                 variant="primary"
                 type="button"
@@ -223,7 +223,7 @@ function Profile() {
                 Cancel
               </Button>
               <Button
-                className="lifterButton my-2"
+                className="lifterButton my-3"
                 variant="primary"
                 type="submit"
               >

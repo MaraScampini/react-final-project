@@ -15,19 +15,23 @@ function Landing() {
       <Row>
         <Col className="d-flex flex-column align-items-center">
           <div className="text-center padding">
-            <p className='landingText'>Consistence has never been easier</p>
-            
+            <p className="landingText">Consistence has never been easier</p>
           </div>
           <Button
-            id="landingButton"
-            className="mt-3 mt-sm-5"
+            className="mt-3 mt-sm-5 lifterButton"
             onClick={() => navigate("/register")}
           >
             REGISTER
           </Button>
           <div className="lifterDownText">
             <p> Already have an account?</p>
-            <p className="lifterLink whiteText" onClick={()=>navigate("/login")}> Login</p>
+            <p
+              className="lifterLink whiteText"
+              onClick={() => navigate("/login")}
+            >
+              {" "}
+              Login
+            </p>
           </div>
         </Col>
       </Row>
