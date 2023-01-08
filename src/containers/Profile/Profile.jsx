@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { editPassword, editProfile, getProfile } from "../../services/ApiCalls";
 
 function Profile() {
@@ -90,48 +89,77 @@ function Profile() {
   };
 
   return (
-    <Container>
-      <Row>
-        {editing === false && editingPassword === false ? (
-          <Col>
+    <Container fluid className="authContainer py-3 px-md-5 px-4">
+      {editing === false && editingPassword === false ? (
+        <Row className="d-flex justify-content-center py-5 profileRow">
+          <Col xs="10" sm="4" lg="3">
             <p>Username: {userData.username}</p>
             <p>Name: {userData.name}</p>
             <p>Surname: {userData.surname}</p>
             <p>Age: {userData.age}</p>
             <p>Address: {userData.address}</p>
             <p>Email: {userData.email}</p>
-            <Button onClick={() => setEditing(true)}>Edit</Button>
-            <Button onClick={() => setEditingPassword(true)}>
+          </Col>
+          <Col xs="10" sm="3" className="d-flex flex-column align-items-center">
+            <Button
+              className="authButton my-2"
+              onClick={() => setEditing(true)}
+            >
+              Edit
+            </Button>
+            <Button
+              className="authButton my-2"
+              onClick={() => setEditingPassword(true)}
+            >
               Edit Password
             </Button>
           </Col>
-        ) : editingPassword === true ? (
-          <Col>
-            <Form onSubmit={(e) => submitPasswordHandler(e)}>
+        </Row>
+      ) : editingPassword === true ? (
+        <Form onSubmit={(e) => submitPasswordHandler(e)}>
+          <Row className="d-flex justify-content-center py-5 profileRow">
+            <Col xs="10" sm="4" lg="3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Edit password</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="password"
                   type="password"
                   placeholder="Enter your new password"
                   onChange={(e) => inputHandler(e)}
                 />
               </Form.Group>
-
-              <Button type="button" onClick={() => setEditingPassword(false)}>
+            </Col>
+            <Col
+              xs="10"
+              sm="3"
+              className="d-flex flex-column align-items-center"
+            >
+              <Button
+                className="authButton my-2"
+                type="button"
+                onClick={() => setEditingPassword(false)}
+              >
                 Back
               </Button>
-              <Button variant="primary" type="submit">
+              <Button
+                className="authButton my-2"
+                variant="primary"
+                type="submit"
+              >
                 Submit
               </Button>
-            </Form>
-          </Col>
-        ) : (
-          <Col>
-            <Form onSubmit={(e) => submitHandler(e)}>
+            </Col>
+          </Row>
+        </Form>
+      ) : (
+        <Form onSubmit={(e) => submitHandler(e)}>
+          <Row className="d-flex justify-content-center py-5 profileRow">
+            <Col xs="10" sm="4" lg="3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="username"
                   type="text"
                   placeholder="Enter your username"
@@ -140,6 +168,7 @@ function Profile() {
                 />
                 <Form.Label>Name</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="name"
                   type="text"
                   placeholder="Enter your name"
@@ -148,6 +177,7 @@ function Profile() {
                 />
                 <Form.Label>Surname</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="surname"
                   type="text"
                   placeholder="Enter your surname"
@@ -156,6 +186,7 @@ function Profile() {
                 />
                 <Form.Label>Age</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="age"
                   type="text"
                   placeholder="Enter your age"
@@ -164,6 +195,7 @@ function Profile() {
                 />
                 <Form.Label>Address</Form.Label>
                 <Form.Control
+                  className="authInput"
                   name="address"
                   type="text"
                   placeholder="Enter your address"
@@ -171,21 +203,31 @@ function Profile() {
                   onChange={(e) => inputHandler(e)}
                 />
               </Form.Group>
-
+            </Col>
+            <Col
+              xs="10"
+              sm="3"
+              className="d-flex flex-column align-items-center"
+            >
               <Button
+                className="authButton my-2"
                 onClick={() => setEditing(false)}
                 variant="primary"
                 type="button"
               >
                 Cancel
               </Button>
-              <Button variant="primary" type="submit">
+              <Button
+                className="authButton my-2"
+                variant="primary"
+                type="submit"
+              >
                 Submit
               </Button>
-            </Form>
-          </Col>
-        )}
-      </Row>
+            </Col>
+          </Row>
+        </Form>
+      )}
     </Container>
   );
 }

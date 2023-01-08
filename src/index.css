@@ -38,8 +38,18 @@ body {
   background-color: #4200FF;
 }
 
+.authButton {
+  background-color: #4200FF !important;
+  border: none !important;
+  width: 10rem;
+}
+
 #authButton:hover{
   background-color: #3300c0;
+}
+
+.authButton:hover{
+  background-color: #3300c0 !important;
 }
 
 .authText {
@@ -61,4 +71,18 @@ body {
 
 .errorInput {
   color: red;
+}
+
+/* PROFILE */
+
+.profileRow {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  min-height: 60vh;
+}
+
+.profileRow > * {
+  font-size: large;
 }
