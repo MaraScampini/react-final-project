@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { ExerciseContext } from "../../context/ExerciseContext";
 import {
   getExercises,
   getExercisesByMaterial,
@@ -8,6 +10,8 @@ import {
 } from "../../services/ApiCalls";
 
 function Exercises() {
+  const { exerciseHandler } = useContext(ExerciseContext);
+  const navigate = useNavigate();
 
   const [exercises, setExercises] = useState([]);
   const [filter, setFilter] = useState("");
@@ -33,6 +37,12 @@ function Exercises() {
   const eraseFilters = () => {
     setFilter("");
     setFilter2("");
+  };
+
+  const clickHandler = (exerciseId) => {
+    exerciseHandler(exerciseId);
+    console.log(exerciseId)
+    navigate("/detail")
   };
 
   return (
@@ -123,7 +133,8 @@ function Exercises() {
         {exercises?.map((exercise, index) => {
           return (
             <Col xs="12" md="6" lg="4" key={index} className="d-flex">
-              <Container className="exerciseCard">
+              <Container className="exerciseCard"
+              onClick={()=>clickHandler(exercise.id_exercise)}>
                 <Row>
                   <Col xs="5" className="exercisesText">
                     <div>Name</div>

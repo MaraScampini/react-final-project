@@ -93,3 +93,11 @@ export const getExercisesDoubleFilter = async (filters) => {
     console.error(error);
   }
 };
+
+export const getExerciseById = async (id) => {
+  try {
+    let res = await axios.get(`${URL}exercise/${id}`);
+    let data = res.data.exercise;
+    return data;
+  } catch (error) {}
+};

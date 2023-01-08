@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import NavbarHeader from "./components/Navbar/Navbar";
+import ExerciseDetail from "./containers/ExerciseDetail/ExerciseDetail";
 import Exercises from "./containers/Exercises/Exercises";
 import Landing from "./containers/Landing/Landing";
 import Authentication from "./containers/Login/Login";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Authentication type="register" />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/exercises" element={<Exercises/>}/>
+        <Route path="/detail" element={<ExerciseDetail/>}/>
       </Routes>
     </BrowserRouter>
   );

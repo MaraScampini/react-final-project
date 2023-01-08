@@ -22,7 +22,7 @@ function Landing() {
       <Row>
         <Col className="d-flex flex-column align-items-center">
           <div className="text-center padding">
-            <p className="landingText">Consistence has never been easier</p>
+            <p className="landingText">Consistency has never been easier</p>
           </div>
           {loggedIn ? (
             <div>
