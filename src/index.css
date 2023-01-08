@@ -45,6 +45,13 @@ body {
   font-family: Rubik Mono One;
 }
 
+.lifterText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #db0000;
+  font-family: Rubik Mono One;
+}
+
 .lifterDownText {
   padding-top: 4rem;
   display: flex;
@@ -72,6 +79,16 @@ body {
 .whiteText{
   color: white
 }
+
+.lifterInput {
+  border-radius: 0 !important;
+
+}
+
+.lifterInput:focus{
+    box-shadow: 7px 5px 0px 0px rgba(219,0,0,1) !important;
+
+}
 /* AUTHENTICATION */
 
 .authInput:focus {
@@ -90,6 +107,7 @@ body {
 
 .errorInput {
   color: red;
+  margin-top: 0.2rem;
 }
 
 /* LANDING */

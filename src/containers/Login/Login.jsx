@@ -165,12 +165,12 @@ if (token) {
             </div>
             {isRegister() ? (
               <Form.Group className="mb-3">
-                <Form.Label>Username</Form.Label>
+                <Form.Label className="lifterText">Username</Form.Label>
                 <Form.Control
                   type="text"
                   name="username"
                   placeholder="Enter your username"
-                  className="authInput"
+                  className="lifterInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(e.target.name, e.target.value, "username")
@@ -182,13 +182,13 @@ if (token) {
               <div></div>
             )}
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label className="lifterText">Email address</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
                 placeholder="Enter email"
                 value={input.email}
-                className="authInput"
+                className="lifterInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "email")
@@ -198,13 +198,13 @@ if (token) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="lifterText">Password</Form.Label>
               <Form.Control
                 type="text"
                 name="password"
                 placeholder="Password"
                 value={input.password}
-                className="authInput"
+                className="lifterInput"
                 onChange={(e) => inputHandler(e)}
                 onBlur={(e) =>
                   errorHandler(e.target.name, e.target.value, "password")
@@ -218,12 +218,12 @@ if (token) {
             </Form.Group>
             {isRegister() ? (
               <Form.Group className="mb-3">
-                <Form.Label>Repeat password</Form.Label>
+                <Form.Label className="lifterText">Repeat password</Form.Label>
                 <Form.Control
                   type="text"
                   name="password2"
                   placeholder="Enter your password"
-                  className="authInput"
+                  className="lifterInput"
                   onChange={(e) => inputHandler(e)}
                   onBlur={(e) =>
                     errorHandler(
