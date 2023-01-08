@@ -89,9 +89,14 @@ function Profile() {
   };
 
   return (
-    <Container fluid className="authContainer py-3 px-md-5 px-4">
+    <Container fluid className="lifterContainer py-3 px-md-5 px-4">
+      <Row>
+        <Col>
+        <div className="lifterTitle text-center">Hello, {userData.username}</div>
+        </Col>
+      </Row>
       {editing === false && editingPassword === false ? (
-        <Row className="d-flex justify-content-center py-5 profileRow">
+        <Row className="d-flex justify-content-center py-5">
           <Col xs="10" sm="4" lg="3">
             <p>Username: {userData.username}</p>
             <p>Name: {userData.name}</p>
@@ -102,13 +107,13 @@ function Profile() {
           </Col>
           <Col xs="10" sm="3" className="d-flex flex-column align-items-center">
             <Button
-              className="authButton my-2"
+              className="lifterButton my-2"
               onClick={() => setEditing(true)}
             >
               Edit
             </Button>
             <Button
-              className="authButton my-2"
+              className="lifterButton my-2"
               onClick={() => setEditingPassword(true)}
             >
               Edit Password
@@ -136,14 +141,14 @@ function Profile() {
               className="d-flex flex-column align-items-center"
             >
               <Button
-                className="authButton my-2"
+                className="lifterButton my-2"
                 type="button"
                 onClick={() => setEditingPassword(false)}
               >
                 Back
               </Button>
               <Button
-                className="authButton my-2"
+                className="lifterButton my-2"
                 variant="primary"
                 type="submit"
               >
@@ -210,7 +215,7 @@ function Profile() {
               className="d-flex flex-column align-items-center"
             >
               <Button
-                className="authButton my-2"
+                className="lifterButton my-2"
                 onClick={() => setEditing(false)}
                 variant="primary"
                 type="button"
@@ -218,7 +223,7 @@ function Profile() {
                 Cancel
               </Button>
               <Button
-                className="authButton my-2"
+                className="lifterButton my-2"
                 variant="primary"
                 type="submit"
               >

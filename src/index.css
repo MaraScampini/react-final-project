@@ -1,9 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Archivo+Black:regular);
+
+@import url(https://fonts.googleapis.com/css?family=Rubik+Mono+One:regular);
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-
+  font-family: 'Lucida Sans Unicode', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .header {
@@ -14,42 +15,69 @@ body {
   cursor: pointer;
 }
 
-/* AUTHENTICATION */
+/* GENERAL */
 
-.authTitle{
-  padding-top: 1rem;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #3300c0;
-  font-family: Helvetica, sans-serif;
+.lifterButton {
+  background-color: #db0000 !important;
+  border: none !important;
+  width: 10rem;
+  font-family: Rubik Mono One !important;
+  border: 1px solid #db0000 !important;
+  border-radius: 0 !important;
+  scale: 120%;
 }
 
-.authContainer{
-  background-color: #f0ebfc;
+.lifterButton:hover {
+  background-color: #ffffff !important;
+  color: #db0000 !important;
+}
+
+.lifterContainer {
+  background-color: #f3ecec;
   min-height: 93vh;
 }
 
-.authInput:focus{
-  border-color: #4200FF !important;
-  box-shadow: 0 0 0 0.25rem #4400ff52 !important;
+.lifterTitle {
+  padding-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #db0000;
+  font-family: Rubik Mono One;
 }
 
-#authButton {
-  background-color: #4200FF;
+.lifterDownText {
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+    sans-serif;
 }
 
-.authButton {
-  background-color: #4200FF !important;
-  border: none !important;
-  width: 10rem;
+.blackText {
+  color: #0f0f0f;
 }
 
-#authButton:hover{
-  background-color: #3300c0;
+.lifterLink {
+  color: #db0000;
+  cursor: pointer;
+  margin-top: -0.5rem;
+  font-family: Rubik Mono One;
 }
 
-.authButton:hover{
-  background-color: #3300c0 !important;
+.lifterLink:hover {
+  text-decoration: underline;
+}
+
+.whiteText{
+  color: white
+}
+/* AUTHENTICATION */
+
+.authInput:focus {
+  border-color: #db000075 !important;
+  box-shadow: 0 0 0 0.25rem #db000075 !important;
 }
 
 .authText {
@@ -59,30 +87,62 @@ body {
   align-items: center;
 }
 
-.authLink {
-  color: #0011ff;
-  cursor: pointer;
-  margin-top: -0.5rem;
-}
 
-.authLink:hover{
-  text-decoration: underline;
-}
 
 .errorInput {
   color: red;
 }
 
-/* PROFILE */
+/* LANDING */
 
-.profileRow {
+.landingContainer {
+  background-image: url(../src/assets/hero-image.jpg);
+  background-size: cover;
+  min-height: 93vh;
+  padding-top: 6rem;
+}
+
+.heroText {
+  font-size: 10rem;
+  font-family: Rubik Mono One;
+  color: white;
+  text-shadow: -4px 4px 0px #0f0f0fc2;
+}
+
+@media (max-width: 512px) {
+  .heroText {
+    font-size: 4rem;
+  }
+}
+
+.padding {
+  padding: 1rem 0;
+}
+
+.landingText {
+  font-size: 3.5rem;
+  font-family: Rubik Mono One;
+  color: white;
+  text-shadow: -4px 4px 0px #0f0f0fc2;
+}
+
+@media (max-width: 512px) {
+  .landingText {
+    font-size: 1.25rem;
+  }
+}
+
+#landingButton {
+  border-radius: 0;
+  background-color: #db0000;
+  border: 1px solid #db0000;
+  scale: 120%;
+  font-family: Rubik Mono One;
+}
+
+#landingButton:hover {
   background-color: white;
-  border-radius: 0.5rem;
-  border: 1px solid lightgray;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-  min-height: 60vh;
+  color: #db0000;
 }
 
-.profileRow > * {
-  font-size: large;
-}
+

@@ -143,14 +143,14 @@ if (token) {
   };
 
   return (
-    <Container fluid className="authContainer">
+    <Container fluid className="lifterContainer">
       <Row className="d-flex justify-content-center pt-sm-5">
         <Col xs="11" md="6">
           <div className="d-flex justify-content-center">
             {isRegister() ? (
-              <p className="authTitle">Register</p>
+              <p className="lifterTitle">Register</p>
             ) : (
-              <p className="authTitle">Log In</p>
+              <p className="lifterTitle">Log In</p>
             )}
           </div>
           <Form className="d-flex flex-column" onSubmit={(e) => submitLogin(e)}>
@@ -239,23 +239,24 @@ if (token) {
             ) : (
               <div></div>
             )}
-
-            <Button id="authButton" type="submit">
-              Submit
-            </Button>
+            <div className="d-flex justify-content-center mt-3">
+              <Button className="lifterButton" type="submit">
+                Submit
+              </Button>
+            </div>
           </Form>
           {isRegister() ? (
-            <div className="authText">
+            <div className="lifterDownText blackText">
               <p>Already have an account?</p>
-              <p className="authLink" onClick={() => navigateLogin()}>
-                Login
+              <p className="lifterLink" onClick={() => navigateLogin()}>
+                LOG IN
               </p>
             </div>
           ) : (
-            <div className="authText">
+            <div className="lifterDownText blackText">
               <p>Do not have an account?</p>
-              <p className="authLink" onClick={() => navigateRegister()}>
-                Register
+              <p className="lifterLink" onClick={() => navigateRegister()}>
+                REGISTER
               </p>
             </div>
           )}
