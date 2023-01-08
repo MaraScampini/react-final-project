@@ -4,8 +4,11 @@
 
 body {
   margin: 0;
-  font-family: 'Lucida Sans Unicode', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
+/* GENERAL */
 
 .header {
   min-height: 7vh;
@@ -14,8 +17,6 @@ body {
 .headerLink {
   cursor: pointer;
 }
-
-/* GENERAL */
 
 .lifterButton {
   background-color: #db0000 !important;
@@ -30,8 +31,7 @@ body {
 .lifterButton:hover {
   background-color: #ffffff !important;
   color: #db0000 !important;
-      box-shadow: 7px 5px 0px 0px rgba(219,0,0,1) !important;
-
+  box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1) !important;
 }
 
 .lifterContainer {
@@ -78,18 +78,16 @@ body {
   text-decoration: underline;
 }
 
-.whiteText{
-  color: white
+.whiteText {
+  color: white;
 }
 
 .lifterInput {
   border-radius: 0 !important;
-
 }
 
-.lifterInput:focus{
-    box-shadow: 7px 5px 0px 0px rgba(219,0,0,1) !important;
-
+.lifterInput:focus {
+  box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1) !important;
 }
 /* AUTHENTICATION */
 
@@ -104,8 +102,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
-
 
 .errorInput {
   color: red;
@@ -164,4 +160,28 @@ body {
   color: #db0000;
 }
 
+/* EXERCISES */
 
+.exercisesText {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #db0000;
+  font-family: Rubik Mono One;
+}
+
+.resultsText {
+  font-weight: bold;
+  color: #0f0f0f;
+}
+
+.exerciseCard {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #db0000;
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+
+.exerciseCard:hover {
+  box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1);
+}

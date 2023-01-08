@@ -23,8 +23,18 @@ const NavbarHeader = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav className="mx-3 lifterLink">Routines</Nav>
-            <Nav className="mx-3 lifterLink">Exercises</Nav>
+            <Nav
+              className="mx-3 lifterLink"
+              onClick={() => navigate("/routines")}
+            >
+              Routines
+            </Nav>
+            <Nav
+              className="mx-3 lifterLink"
+              onClick={() => navigate("/exercises")}
+            >
+              Exercises
+            </Nav>
           </Nav>
           {token ? (
             <Nav>
