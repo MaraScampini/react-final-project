@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
+import { Button, Col, Container, Dropdown, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
+  getExerciseByName,
   getExercises,
   getExercisesByMaterial,
   getExercisesByMuscle,
@@ -16,6 +17,7 @@ function Exercises() {
   const [exercises, setExercises] = useState([]);
   const [filter, setFilter] = useState("");
   const [filter2, setFilter2] = useState("");
+  const [criteria, setCriteria] = useState("");
 
   useEffect(() => {
     getExercises().then((data) => setExercises(data));
@@ -34,6 +36,14 @@ function Exercises() {
     }
   }, [filter, filter2]);
 
+  useEffect(() => {
+    if (criteria === "") {
+      getExercises().then((data) => setExercises(data));
+    } else {
+      getExerciseByName(criteria).then((data) => setExercises(data));
+    }
+  }, [criteria]);
+
   const eraseFilters = () => {
     setFilter("");
     setFilter2("");
@@ -41,14 +51,19 @@ function Exercises() {
 
   const clickHandler = (exerciseId) => {
     exerciseHandler(exerciseId);
-    console.log(exerciseId)
-    navigate("/detail")
+    console.log(exerciseId);
+    navigate("/detail");
   };
+
+  const inputHandler = (e) => {
+    setCriteria(`${e.target.value}`);
+  };
+
 
   return (
     <Container fluid>
       <Row>
-        <Col>
+        <Col sm="12" lg="3">
           <Dropdown>
             <Dropdown.Toggle
               className="lifterButton ms-3 my-3 my-md-0"
@@ -76,7 +91,7 @@ function Exercises() {
             </Dropdown.Menu>
           </Dropdown>
         </Col>
-        <Col>
+        <Col sm="12" lg="3">
           <Dropdown>
             <Dropdown.Toggle
               className="lifterButton ms-3 my-3 my-md-0"
@@ -128,13 +143,28 @@ function Exercises() {
             </Dropdown.Menu>
           </Dropdown>
         </Col>
+        <Col sm="12" lg="4">
+          <Form >
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="text"
+                name="search"
+                placeholder="Search exercise"
+                className="lifterInput"
+                onChange={(e) => inputHandler(e)}
+              />
+            </Form.Group>
+          </Form>
+        </Col>
       </Row>
       <Row>
         {exercises?.map((exercise, index) => {
           return (
             <Col xs="12" md="6" lg="4" key={index} className="d-flex">
-              <Container className="exerciseCard"
-              onClick={()=>clickHandler(exercise.id_exercise)}>
+              <Container
+                className="exerciseCard"
+                onClick={() => clickHandler(exercise.id_exercise)}
+              >
                 <Row>
                   <Col xs="5" className="exercisesText">
                     <div>Name</div>

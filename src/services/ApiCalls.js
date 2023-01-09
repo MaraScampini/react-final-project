@@ -99,5 +99,17 @@ export const getExerciseById = async (id) => {
     let res = await axios.get(`${URL}exercise/${id}`);
     let data = res.data.exercise;
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getExerciseByName = async (name) => {
+  try {
+    let res = await axios.get(`${URL}exercise/name/${name}`);
+    let data = res.data.exercises;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
