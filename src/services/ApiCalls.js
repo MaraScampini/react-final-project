@@ -42,7 +42,6 @@ export const editProfile = async (body) => {
 
 export const editPassword = async (body) => {
   const token = localStorage.getItem("jwt");
-  console.log(token);
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -112,4 +111,20 @@ export const getExerciseByName = async (name) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const getMyRoutines = async () => {
+  try {
+    const token = localStorage.getItem("jwt");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      let res = await axios.get(`${URL}routine/all`, config);
+      let data = res.data.routines;
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  } catch (error) {}
 };

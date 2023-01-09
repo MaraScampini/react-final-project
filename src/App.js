@@ -5,6 +5,7 @@ import Exercises from "./containers/Exercises/Exercises";
 import Landing from "./containers/Landing/Landing";
 import Authentication from "./containers/Login/Login";
 import Profile from "./containers/Profile/Profile";
+import Routines from "./containers/Routines/Routines";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/exercises" element={<Exercises/>}/>
         <Route path="/detail" element={<ExerciseDetail/>}/>
+        <Route path="/routines" element={<Routines/>}/>
       </Routes>
     </BrowserRouter>
   );
