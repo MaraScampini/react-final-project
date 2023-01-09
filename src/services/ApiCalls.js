@@ -114,17 +114,43 @@ export const getExerciseByName = async (name) => {
 };
 
 export const getMyRoutines = async () => {
+  const token = localStorage.getItem("jwt");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
   try {
-    const token = localStorage.getItem("jwt");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    try {
-      let res = await axios.get(`${URL}routine/all`, config);
-      let data = res.data.routines;
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  } catch (error) {}
+    let res = await axios.get(`${URL}routine/all`, config);
+    let data = res.data.routines;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+export const getSetsByRoutine = async (id) => {
+  const token = localStorage.getItem("jwt");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    let res = await axios.get(`${URL}set/${id}`, config);
+    let data = res.data.sets;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getRoutineById = async (id) => {
+  const token = localStorage.getItem("jwt");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    let res = await axios.get(`${URL}routine/${id}`, config);
+    let data = res.data.routine;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

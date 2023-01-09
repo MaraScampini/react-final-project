@@ -51,8 +51,7 @@ function Exercises() {
 
   const clickHandler = (exerciseId) => {
     exerciseHandler(exerciseId);
-    console.log(exerciseId);
-    navigate("/detail");
+    navigate("/ex_detail");
   };
 
   const inputHandler = (e) => {
