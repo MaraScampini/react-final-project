@@ -25,13 +25,14 @@ function Landing() {
             <p className="landingText">Consistency has never been easier</p>
           </div>
           {loggedIn ? (
-            <div>
+            <div className="d-flex flex-column align-items-center">
               <Button
                 className="mt-3 mt-sm-5 lifterButton"
                 onClick={() => navigate("/routines")}
               >
                 ROUTINES
               </Button>
+              <p className="lifterDownText">Consult our <span className="lifterLink whiteText">privacy policy</span></p>
             </div>
           ) : (
             <div className="d-flex flex-column align-items-center">
