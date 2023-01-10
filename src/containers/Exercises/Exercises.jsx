@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Dropdown, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ExerciseContext } from "../../context/ExerciseContext";
@@ -8,11 +8,14 @@ import {
   getExercisesByMaterial,
   getExercisesByMuscle,
   getExercisesDoubleFilter,
+  newSet,
 } from "../../services/ApiCalls";
 
 function Exercises() {
-  const { exerciseHandler } = useContext(ExerciseContext);
+  const { exerciseHandler, editingRoutine, routineId, editRoutineHandler } =
+    useContext(ExerciseContext);
   const navigate = useNavigate();
+  const idRoutine = routineId || localStorage.getItem("routine");
 
   const [exercises, setExercises] = useState([]);
   const [filter, setFilter] = useState("");
@@ -49,15 +52,34 @@ function Exercises() {
     setFilter2("");
   };
 
+  let body = {
+    routine: idRoutine,
+    exercise: "",
+    reps: 0,
+    weight: 0,
+  };
+
   const clickHandler = (exerciseId) => {
-    exerciseHandler(exerciseId);
-    navigate("/ex_detail");
+    console.log(exerciseId);
+    if (editingRoutine === false) {
+      exerciseHandler(exerciseId);
+      navigate("/ex_detail");
+    } else if (editingRoutine === true) {
+      body = {
+        routine: idRoutine,
+        exercise: exerciseId,
+        reps: 0,
+        weight: 0,
+      };
+      newSet(body)
+      .then(() => editRoutineHandler())
+      .then(() => navigate("/r_detail"));
+    }
   };
 
   const inputHandler = (e) => {
     setCriteria(`${e.target.value}`);
   };
-
 
   return (
     <Container fluid>
@@ -143,7 +165,7 @@ function Exercises() {
           </Dropdown>
         </Col>
         <Col sm="12" lg="4">
-          <Form >
+          <Form>
             <Form.Group className="mb-3">
               <Form.Control
                 type="text"

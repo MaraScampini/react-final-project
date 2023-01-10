@@ -6,6 +6,7 @@ export function ExerciseContextProvider({ children }) {
 
   const [exerciseId, setExerciseId] = useState("");
   const [routineId, setRoutineId] = useState("");
+  const [editingRoutine, setEditingRoutine] = useState(false)
 
   const exerciseHandler = (id) => {
     setExerciseId(id);
@@ -17,13 +18,21 @@ export function ExerciseContextProvider({ children }) {
     localStorage.setItem("routine", id)
   }
 
+  const editRoutineHandler = () => {
+    editingRoutine===true ? setEditingRoutine(false) : setEditingRoutine(true)
+  }
+
+
+
   return (
     <ExerciseContext.Provider
       value={{
         exerciseId,
         exerciseHandler,
         routineId,
-        routineHandler
+        routineHandler,
+        editingRoutine,
+        editRoutineHandler
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
   editSet,
@@ -9,7 +10,7 @@ import {
 } from "../../services/ApiCalls";
 
 function RoutineDetail() {
-  const { routineId } = useContext(ExerciseContext);
+  const { routineId, editRoutineHandler } = useContext(ExerciseContext);
   let idRoutine = routineId || localStorage.getItem("routine");
 
   const [sets, setSets] = useState([]);
@@ -21,6 +22,7 @@ function RoutineDetail() {
       set: ""
     }
   );
+  const navigate = useNavigate()
 
   useEffect(() => {
     getSetsByRoutine(idRoutine).then((data) => setSets(data));
@@ -53,6 +55,11 @@ function RoutineDetail() {
     })
     }
 
+    const addExerciseHandler = () => {
+      editRoutineHandler()
+      navigate("/exercises")
+    }
+
   const [body, setBody] = useState({
     id: "",
     reps: "",
@@ -82,9 +89,6 @@ editSet(body).then(() => setEditing({
         <Col>
           <p className="lifterTitle">{routine.name}</p>
         </Col>
-        <Col>
-          
-        </Col>
       </Row>
       <Row className="d-flex flex-column ">
         <Col>
@@ -96,8 +100,10 @@ editSet(body).then(() => setEditing({
                   return set.exerciseIdExercise === exercise.id_exercise ? (
                     <div key={index} className="d-flex">
                       {editing && set.id_set === editing.set ? (
-                        <Form className="d-flex"
-                        onSubmit={(e) => submitHandler(e)}>
+                        <Form
+                          className="d-flex"
+                          onSubmit={(e) => submitHandler(e)}
+                        >
                           <Form.Group className="d-flex">
                             <Form.Label>REPS</Form.Label>
                             <Form.Control
@@ -129,8 +135,10 @@ editSet(body).then(() => setEditing({
                             ></Form.Control>
                           </Form.Group>
                           <Form.Group className="d-flex justify-content-center mt-3">
-                            <Button className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
-                            type="submit">
+                            <Button
+                              className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                              type="submit"
+                            >
                               ✓
                             </Button>
                             <Button
@@ -168,6 +176,10 @@ editSet(body).then(() => setEditing({
             );
           })}
         </Col>
+        <Col className="d-flex justify-content-center">
+        <Button className="lifterButton mt-3 mb-3"
+        onClick={()=>addExerciseHandler()}>ADD EXERCISE</Button>
+          </Col>
       </Row>
     </Container>
   );

@@ -166,3 +166,16 @@ export const editSet = async (body) => {
     console.error(error);
   }
 };
+
+export const newSet = async (body) => {
+  const token = localStorage.getItem("jwt");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    await axios.post(`${URL}set/new`, body, config);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
