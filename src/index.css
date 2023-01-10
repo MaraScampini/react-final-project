@@ -89,6 +89,11 @@ body {
 .lifterInput:focus {
   box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1) !important;
 }
+
+.narrow {
+  max-width: 3rem;
+}
+
 /* AUTHENTICATION */
 
 .authInput:focus {

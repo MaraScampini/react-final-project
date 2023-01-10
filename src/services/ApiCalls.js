@@ -154,3 +154,15 @@ export const getRoutineById = async (id) => {
     console.error(error);
   }
 }
+
+export const editSet = async (body) => {
+  const token = localStorage.getItem("jwt");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    await axios.patch(`${URL}set/edit`, body, config);
+  } catch (error) {
+    console.error(error);
+  }
+};
