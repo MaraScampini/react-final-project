@@ -137,18 +137,19 @@ function RoutineDetail() {
                   return set?.exerciseIdExercise === exercise?.id_exercise ? (
                     <div key={index}>
                       {editing && set.id_set === editing.set ? (
-                        <div className="d-flex">
                           <Form
-                            className="d-flex"
                             onSubmit={(e) => submitHandler(e)}
                           >
-                            <Form.Group className="d-flex">
+                        <Container className="setContainer">
+                          <Row className="d-flex align-items-center setRow">
+                            <Col xs="12" md="6" className="d-flex setColumn">
+                            <Form.Group className="d-flex align-items-center">
                               <Form.Label>REPS</Form.Label>
                               <Form.Control
                                 type="text"
                                 name="reps"
                                 placeholder="0"
-                                className="lifterInput narrow"
+                                className="ms-3 me-3 lifterInput narrowInput "
                                 onChange={(e) =>
                                   inputHandler(
                                     e.target.name,
@@ -162,7 +163,7 @@ function RoutineDetail() {
                                 type="text"
                                 name="weight"
                                 placeholder="0"
-                                className="lifterInput narrow"
+                                className="ms-3 me-3 lifterInput narrowInput"
                                 onChange={(e) =>
                                   inputHandler(
                                     e.target.name,
@@ -172,22 +173,26 @@ function RoutineDetail() {
                                 }
                               ></Form.Control>
                             </Form.Group>
-                            <Form.Group className="d-flex justify-content-center mt-3">
+                            </Col>
+                            <Col md="6" className="setColumn">
+                            <Form.Group className="d-flex ">
                               <Button
-                                className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
                                 type="submit"
                               >
                                 ✓
                               </Button>
                               <Button
-                                className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
                                 onClick={() => cancelEdit()}
                               >
                                 ✗
                               </Button>
                             </Form.Group>
+                        </Col>
+                        </Row>
+                        </Container>
                           </Form>
-                        </div>
                       ) : (
                         <Container className="setContainer">
                           <Row className="d-flex align-items-center setRow">

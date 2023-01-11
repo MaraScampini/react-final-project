@@ -91,7 +91,12 @@ body {
 }
 
 .narrow {
-  max-width: fit-content;
+  max-width:min-content;
+}
+
+.narrowInput{
+  max-width: 3rem;
+  max-height: 3rem;
 }
 
 /* AUTHENTICATION */
@@ -263,4 +268,26 @@ body {
     color: #ffffff !important;
     box-shadow: 6px 4px 0px 0px rgb(255, 255, 255), 8px 6px 0px 0px #db0000 !important;
   }
+}
+
+.pagination{
+  list-style: none;
+}
+
+.page{
+  border: 1px solid #db0000;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  background-color: #db0000;
+  color: #fff;
+  font-family: Rubik Mono One;
+  cursor: pointer;
+  scale: 80%
+}
+
+.page:hover{
+  background-color: #fff;
+  color: #db0000;
+  box-shadow: 7px 5px 0px 0px #db0000;
+  scale: 100%
 }

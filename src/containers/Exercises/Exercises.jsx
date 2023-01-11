@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Dropdown, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Pagination from "../../components/Pagination/Pagination";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
   getExerciseByName,
@@ -21,6 +22,13 @@ function Exercises() {
   const [filter, setFilter] = useState("");
   const [filter2, setFilter2] = useState("");
   const [criteria, setCriteria] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(15)
+
+  // PAGINATION
+  const indexOfLastExercise = currentPage * perPage;
+  const indexOfFirstPost = indexOfLastExercise - perPage;
+  const currentExercises = exercises.slice(indexOfFirstPost, indexOfLastExercise)
 
   useEffect(() => {
     getExercises().then((data) => setExercises(data));
@@ -32,7 +40,7 @@ function Exercises() {
     } else if (filter === "" && filter2 !== "") {
       getExercisesByMuscle(filter2).then((data) => setExercises(data));
     } else if (filter !== "" && filter2 !== "") {
-      let params = `${filter} ${filter2}`;
+      let params = `${filter}-${filter2}`;
       getExercisesDoubleFilter(params).then((data) => setExercises(data));
     } else {
       getExercises().then((data) => setExercises(data));
@@ -80,6 +88,20 @@ function Exercises() {
     setCriteria(`${e.target.value}`);
   };
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  const applyFilter = (filter) => {
+    setFilter(filter);
+    setCurrentPage(1)
+  }
+
+  const applyFilter2 = (filter) => {
+    setFilter2(filter);
+    setCurrentPage(1);
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -93,19 +115,19 @@ function Exercises() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="exerciseCard">
-              <Dropdown.Item onClick={() => setFilter("barbell")}>
+              <Dropdown.Item onClick={() => applyFilter("barbell")}>
                 Barbell
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("dumbbell")}>
+              <Dropdown.Item onClick={() => applyFilter("dumbbell")}>
                 Dumbbell
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("machine")}>
+              <Dropdown.Item onClick={() => applyFilter("machine")}>
                 Machine
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("none")}>
+              <Dropdown.Item onClick={() => applyFilter("none")}>
                 None
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("kettlebell")}>
+              <Dropdown.Item onClick={() => applyFilter("kettlebell")}>
                 Kettlebell
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -121,43 +143,43 @@ function Exercises() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="exerciseCard">
-              <Dropdown.Item onClick={() => setFilter("abdominals")}>
+              <Dropdown.Item onClick={() => applyFilter2("abdominals")}>
                 Abdominals
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("biceps")}>
+              <Dropdown.Item onClick={() => applyFilter2("biceps")}>
                 Biceps
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter("calves")}>
+              <Dropdown.Item onClick={() => applyFilter2("calves")}>
                 Calves
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("chest")}>
+              <Dropdown.Item onClick={() => applyFilter2("chest")}>
                 Chest
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("full%20body")}>
+              <Dropdown.Item onClick={() => applyFilter2("full%20body")}>
                 Full Body
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("glutes")}>
+              <Dropdown.Item onClick={() => applyFilter2("glutes")}>
                 Glutes
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("hamstrings")}>
+              <Dropdown.Item onClick={() => applyFilter2("hamstrings")}>
                 Hamstrings
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("lower%20back")}>
+              <Dropdown.Item onClick={() => applyFilter2("lower%20back")}>
                 Lower Back
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("quadriceps")}>
+              <Dropdown.Item onClick={() => applyFilter2("quadriceps")}>
                 Quadriceps
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("shoulders")}>
+              <Dropdown.Item onClick={() => applyFilter2("shoulders")}>
                 Shoulders
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("traps")}>
+              <Dropdown.Item onClick={() => applyFilter2("traps")}>
                 Traps
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("triceps")}>
+              <Dropdown.Item onClick={() => applyFilter2("triceps")}>
                 Triceps
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setFilter2("upper%20back")}>
+              <Dropdown.Item onClick={() => applyFilter2("upper%20back")}>
                 Upper Back
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -178,7 +200,7 @@ function Exercises() {
         </Col>
       </Row>
       <Row>
-        {exercises?.map((exercise, index) => {
+        {currentExercises?.map((exercise, index) => {
           return (
             <Col xs="12" md="6" lg="4" key={index} className="d-flex">
               <Container
@@ -223,6 +245,15 @@ function Exercises() {
       ) : (
         <div></div>
       )}
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <Pagination
+            perPage={perPage}
+            total={exercises.length}
+            paginate={paginate}
+          />
+        </Col>
+      </Row>
     </Container>
   );
 }
