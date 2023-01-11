@@ -173,7 +173,9 @@ export const newSet = async (body) => {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-    await axios.post(`${URL}set/new`, body, config);
+    let res = await axios.post(`${URL}set/new`, body, config);
+    let data = res.data.newSet;
+    return data;
   } catch (error) {
     console.error(error);
   }
