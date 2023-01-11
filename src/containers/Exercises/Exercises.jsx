@@ -238,7 +238,7 @@ function Exercises() {
       </Row>
       {filter || filter2 ? (
         <Row>
-          <Button className="lifterButton" onClick={() => eraseFilters()}>
+          <Button className="lifterButton mb-4" onClick={() => eraseFilters()}>
             ERASE FILTERS
           </Button>
         </Row>
