@@ -153,7 +153,7 @@ export const getRoutineById = async (id) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const editSet = async (body) => {
   const token = localStorage.getItem("jwt");
@@ -181,3 +181,15 @@ export const newSet = async (body) => {
   }
 };
 
+export const deleteSet = async (body) => {
+  const token = localStorage.getItem("jwt");
+    
+  try {
+    await axios.delete(`${URL}set/delete`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: body
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};

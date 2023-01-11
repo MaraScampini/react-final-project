@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
+  deleteSet,
   editSet,
   getRoutineById,
   getSetsByRoutine,
@@ -27,6 +28,7 @@ function RoutineDetail() {
     weight: "",
     routine: idRoutine,
   });
+  const [deleted, setDeleted] = useState(false);
 
   let bodyAdd = {
     reps: 0,
@@ -37,7 +39,7 @@ function RoutineDetail() {
 
   useEffect(() => {
     getSetsByRoutine(idRoutine).then((data) => setSets(data));
-  }, []);
+  }, [routine]);
 
   useEffect(() => {
     getRoutineById(idRoutine).then((data) => setRoutine(data));
@@ -47,12 +49,13 @@ function RoutineDetail() {
     setExercises(routine?.exercises);
   }, [routine]);
 
-  useEffect(
-    () => {
-      getSetsByRoutine(idRoutine).then((data) => setSets(data));
-    },
-    [editing]
-  );
+  useEffect(() => {
+    getSetsByRoutine(idRoutine).then((data) => setSets(data));
+  }, [editing]);
+
+  useEffect(() => {
+    getSetsByRoutine(idRoutine).then((data) => setSets(data));
+  }, [deleted]);
 
   const editHandler = (set) => {
     setEditing({
@@ -98,13 +101,23 @@ function RoutineDetail() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    editSet(body)
-    .then(() =>
+    editSet(body).then(() =>
       setEditing({
         active: false,
         set: "",
       })
     );
+  };
+
+  const deleteHandler = (setId) => {
+    let deleteBody = {
+      routine: parseInt(idRoutine),
+      id: setId,
+    };
+
+    deleteSet(deleteBody)
+      .then(getSetsByRoutine(idRoutine).then((data) => setSets(data)))
+      .then(deleted === true ? setDeleted(false) : setDeleted(true));
   };
 
   return (
@@ -122,86 +135,102 @@ function RoutineDetail() {
                 <p className="lifterText">{exercise?.name}</p>
                 {sets.map((set, index) => {
                   return set?.exerciseIdExercise === exercise?.id_exercise ? (
-                    <div key={index} className="d-flex">
+                    <div key={index}>
                       {editing && set.id_set === editing.set ? (
-                        <Form
-                          className="d-flex"
-                          onSubmit={(e) => submitHandler(e)}
-                        >
-                          <Form.Group className="d-flex">
-                            <Form.Label>REPS</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="reps"
-                              placeholder="0"
-                              className="lifterInput narrow"
-                              onChange={(e) =>
-                                inputHandler(
-                                  e.target.name,
-                                  e.target.value,
-                                  set.id_set
-                                )
-                              }
-                            ></Form.Control>
-                            <Form.Label>WEIGHT</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="weight"
-                              placeholder="0"
-                              className="lifterInput narrow"
-                              onChange={(e) =>
-                                inputHandler(
-                                  e.target.name,
-                                  e.target.value,
-                                  set.id_set
-                                )
-                              }
-                            ></Form.Control>
-                          </Form.Group>
-                          <Form.Group className="d-flex justify-content-center mt-3">
-                            <Button
-                              className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
-                              type="submit"
-                            >
-                              ✓
-                            </Button>
-                            <Button
-                              className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
-                              onClick={() => cancelEdit()}
-                            >
-                              ✗
-                            </Button>
-                          </Form.Group>
-                        </Form>
-                      ) : (
-                        <div>
-                          <p>
-                            <span className="me-5">REPS</span>
-                            <span className="me-5">{set.reps}</span>
-                          </p>
-                          <p>
-                            <span className="me-4">WEIGHT</span>
-                            <span>{set.weight}</span>
-                          </p>
-                          <Button
-                            className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0"
-                            onClick={() => editHandler(set.id_set)}
+                        <div className="d-flex">
+                          <Form
+                            className="d-flex"
+                            onSubmit={(e) => submitHandler(e)}
                           >
-                            EDIT
-                          </Button>
+                            <Form.Group className="d-flex">
+                              <Form.Label>REPS</Form.Label>
+                              <Form.Control
+                                type="text"
+                                name="reps"
+                                placeholder="0"
+                                className="lifterInput narrow"
+                                onChange={(e) =>
+                                  inputHandler(
+                                    e.target.name,
+                                    e.target.value,
+                                    set.id_set
+                                  )
+                                }
+                              ></Form.Control>
+                              <Form.Label>WEIGHT</Form.Label>
+                              <Form.Control
+                                type="text"
+                                name="weight"
+                                placeholder="0"
+                                className="lifterInput narrow"
+                                onChange={(e) =>
+                                  inputHandler(
+                                    e.target.name,
+                                    e.target.value,
+                                    set.id_set
+                                  )
+                                }
+                              ></Form.Control>
+                            </Form.Group>
+                            <Form.Group className="d-flex justify-content-center mt-3">
+                              <Button
+                                className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                type="submit"
+                              >
+                                ✓
+                              </Button>
+                              <Button
+                                className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                onClick={() => cancelEdit()}
+                              >
+                                ✗
+                              </Button>
+                            </Form.Group>
+                          </Form>
                         </div>
+                      ) : (
+                        <Container className="setContainer">
+                          <Row className="d-flex align-items-center setRow">
+                            <Col xs="12" md="6" className="d-flex setColumn">
+                              <p>
+                                <span className="me-5">REPS</span>
+                                <span className="me-5">{set.reps}</span>
+                              </p>
+                              <p>
+                                <span className="me-4">WEIGHT</span>
+                                <span>{set.weight}</span>
+                              </p>
+                            </Col>
+                            <Col md="6" className="setColumn">
+                              <Button
+                                className="mobileButton mt-0 ms-0 ms-lg-5 me-3 mb-4 mb-lg-3 narrow"
+                                onClick={() => editHandler(set.id_set)}
+                              >
+                                &#9998;
+                              </Button>
+                              <Button
+                                className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-3 narrow"
+                                onClick={() => deleteHandler(set.id_set)}
+                              >
+                                ╳
+                              </Button>
+                            </Col>
+                          </Row>
+                        </Container>
                       )}
                     </div>
                   ) : (
                     <div key={index}></div>
                   );
                 })}
-                <Button
-                  className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-0"
-                  onClick={() => addSetHandler(exercise.id_exercise)}
-                >
-                  ADD SET
-                </Button>
+                <div className="d-flex justify-content-center">
+                  <Button
+                    className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-3"
+                    onClick={() => addSetHandler(exercise.id_exercise)}
+                  >
+                    ADD SET
+                  </Button>
+                </div>
               </div>
             );
           })}

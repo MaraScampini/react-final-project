@@ -91,7 +91,7 @@ body {
 }
 
 .narrow {
-  max-width: 3rem;
+  max-width: fit-content;
 }
 
 /* AUTHENTICATION */
@@ -193,29 +193,74 @@ body {
 
 /* EXERCISE DETAIL */
 
-.detailCard{
+.detailCard {
   border: 1px solid #db0000;
   border-radius: 0;
   padding: 0.5rem;
   box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1);
-  margin: 0 0.5rem
+  margin: 0 0.5rem;
 }
 
-.detailDescription{
+.detailDescription {
   text-align: justify;
 }
 
-.detailImage{
+.detailImage {
   max-width: 500px;
-  max-height: 500px; 
+  max-height: 500px;
 }
 
 @media (max-width: 512px) {
-  .detailImage{
+  .detailImage {
     max-width: 100vw;
   }
 }
 
-.detailButton{
+.detailButton {
   width: 100%;
+}
+
+/* ROUTINE DETAIL */
+
+.setRow {
+  justify-content: space-between;
+}
+
+.mobileButton {
+  border: 1px solid #db0000 !important;
+  background-color: #db0000 !important;
+  color: #ffffff !important;
+
+  font-family: Rubik Mono One !important;
+  border-radius: 0 !important;
+}
+
+.mobileButton:hover {
+  background-color: #fff !important;
+  color: #db0000 !important;
+  box-shadow: 7px 5px 0px 0px #db0000 !important;
+}
+
+@media (max-width: 512px) {
+  .setRow {
+    justify-content: center;
+  }
+  .setColumn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobileButton {
+    border: none !important;
+    background-color: #ffffff !important;
+    color: #db0000 !important;
+    font-family: Rubik Mono One !important;
+    border-radius: 0 !important;
+  }
+
+  .mobileButton:hover {
+    background-color: #db0000 !important;
+    color: #ffffff !important;
+    box-shadow: 6px 4px 0px 0px rgb(255, 255, 255), 8px 6px 0px 0px #db0000 !important;
+  }
 }

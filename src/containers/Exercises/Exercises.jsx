@@ -60,7 +60,6 @@ function Exercises() {
   };
 
   const clickHandler = (exerciseId) => {
-    console.log(exerciseId);
     if (editingRoutine === false) {
       exerciseHandler(exerciseId);
       navigate("/ex_detail");
