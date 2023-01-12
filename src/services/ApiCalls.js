@@ -193,3 +193,17 @@ export const deleteSet = async (body) => {
     console.error(error);
   }
 };
+
+export const newRoutine = async (body) => {
+    const token = localStorage.getItem("jwt");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      let res = await axios.post(`${URL}routine/new`, body, config);
+      let data = res.data.newRoutine;
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+}

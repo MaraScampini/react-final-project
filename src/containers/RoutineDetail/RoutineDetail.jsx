@@ -12,7 +12,10 @@ import {
 
 function RoutineDetail() {
   const { routineId, editRoutineHandler } = useContext(ExerciseContext);
-  let idRoutine = routineId || localStorage.getItem("routine");
+  let idRoutine = routineId 
+  if(!routineId) {
+    idRoutine = localStorage.getItem("routine");
+  } 
   const navigate = useNavigate();
 
   const [sets, setSets] = useState([]);
@@ -43,7 +46,7 @@ function RoutineDetail() {
 
   useEffect(() => {
     getRoutineById(idRoutine).then((data) => setRoutine(data));
-  }, []);
+  }, [idRoutine]);
 
   useEffect(() => {
     setExercises(routine?.exercises);
@@ -148,7 +151,7 @@ function RoutineDetail() {
                               <Form.Control
                                 type="text"
                                 name="reps"
-                                placeholder="0"
+                                placeholder={set.reps}
                                 className="ms-3 me-3 lifterInput narrowInput "
                                 onChange={(e) =>
                                   inputHandler(
@@ -162,7 +165,7 @@ function RoutineDetail() {
                               <Form.Control
                                 type="text"
                                 name="weight"
-                                placeholder="0"
+                                placeholder={set.weight}
                                 className="ms-3 me-3 lifterInput narrowInput"
                                 onChange={(e) =>
                                   inputHandler(
