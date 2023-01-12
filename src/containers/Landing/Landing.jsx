@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Landing() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("jwt");
+  const token = sessionStorage.getItem("jwt");
 
   const [loggedIn, setLoggedIn] = useState(false);
 

@@ -1,11 +1,13 @@
 import axios from "axios";
 const URL = "https://backend-final-project-production.up.railway.app/";
+  const token = sessionStorage.getItem("jwt");
+
 
 export const userLogin = async (body) => {
   let res = await axios.post(`${URL}auth/login`, body);
   let jwt = res.data.jwt;
 
-  localStorage.setItem("jwt", jwt);
+  sessionStorage.setItem("jwt", jwt);
 };
 
 export const userRegister = async (body) => {
@@ -13,7 +15,6 @@ export const userRegister = async (body) => {
 };
 
 export const getProfile = async () => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -27,27 +28,22 @@ export const getProfile = async () => {
 };
 
 export const editProfile = async (body) => {
-  const token = localStorage.getItem("jwt");
-  console.log(token);
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
     await axios.patch(`${URL}user/profile`, body, config);
-    console.log("first");
   } catch (error) {
     console.error(error);
   }
 };
 
 export const editPassword = async (body) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
     await axios.patch(`${URL}user/password`, body, config);
-    console.log("first");
   } catch (error) {
     console.error(error);
   }
@@ -114,7 +110,6 @@ export const getExerciseByName = async (name) => {
 };
 
 export const getMyRoutines = async () => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -128,7 +123,6 @@ export const getMyRoutines = async () => {
 };
 
 export const getSetsByRoutine = async (id) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -142,7 +136,6 @@ export const getSetsByRoutine = async (id) => {
 };
 
 export const getRoutineById = async (id) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -156,7 +149,6 @@ export const getRoutineById = async (id) => {
 };
 
 export const editSet = async (body) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -168,7 +160,6 @@ export const editSet = async (body) => {
 };
 
 export const newSet = async (body) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -182,7 +173,6 @@ export const newSet = async (body) => {
 };
 
 export const deleteSet = async (body) => {
-  const token = localStorage.getItem("jwt");
     
   try {
     await axios.delete(`${URL}set/delete`, {
@@ -195,7 +185,6 @@ export const deleteSet = async (body) => {
 };
 
 export const newRoutine = async (body) => {
-    const token = localStorage.getItem("jwt");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -209,7 +198,6 @@ export const newRoutine = async (body) => {
 }
 
 export const editRoutine = async (body) => {
-  const token = localStorage.getItem("jwt");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -221,7 +209,6 @@ export const editRoutine = async (body) => {
 }
 
 export const deleteRoutine = async (body) => {
-  const token = localStorage.getItem("jwt");
 
   try {
     await axios.delete(`${URL}routine/delete`, {
@@ -234,14 +221,12 @@ export const deleteRoutine = async (body) => {
 };
 
 export const getAllUsers = async () => {
-    const token = localStorage.getItem("jwt");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     try {
       let res = await axios.get(`${URL}user/all`, config);
       let data = res.data.users;
-      console.log(data)
       return data;
     } catch (error) {
       console.error(error);
@@ -249,7 +234,6 @@ export const getAllUsers = async () => {
 }
 
 export const deleteUser = async (body) => {
-  const token = localStorage.getItem("jwt");
 
   try {
     await axios.delete(`${URL}user/delete`, {

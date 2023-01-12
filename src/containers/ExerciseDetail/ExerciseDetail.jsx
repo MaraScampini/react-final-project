@@ -9,7 +9,7 @@ function ExerciseDetail() {
   const navigate = useNavigate()
 
   const { exerciseId } = useContext(ExerciseContext);
-  let idExercise = exerciseId || localStorage.getItem("exercise");
+  let idExercise = exerciseId || sessionStorage.getItem("exercise");
   const [exercise, setExercise] = useState({});
 
   useEffect(() => {

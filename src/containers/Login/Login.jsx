@@ -8,7 +8,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const Authentication = ({ type }) => {
   const navigate = useNavigate();
-let token = localStorage.getItem("jwt");
+let token = sessionStorage.getItem("jwt");
 useEffect(() => {
 if (token) {
   navigate("/");

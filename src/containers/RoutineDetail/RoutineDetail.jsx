@@ -15,7 +15,7 @@ function RoutineDetail() {
   const { routineId, editRoutineHandler } = useContext(ExerciseContext);
   let idRoutine = routineId;
   if (!routineId) {
-    idRoutine = localStorage.getItem("routine");
+    idRoutine = sessionStorage.getItem("routine");
   }
   const navigate = useNavigate();
 

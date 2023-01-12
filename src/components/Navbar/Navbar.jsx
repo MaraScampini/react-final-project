@@ -7,11 +7,11 @@ import logo from "../../assets/gym-near-svgrepo-com.svg";
 
 const NavbarHeader = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("jwt");
+  const token = sessionStorage.getItem("jwt");
   const { decodedToken } = useJwt(token);
   const role = decodedToken?.role;
   const logout = () => {
-    localStorage.removeItem("jwt");
+    sessionStorage.removeItem("jwt");
     navigate("/");
   };
 

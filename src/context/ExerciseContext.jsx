@@ -10,12 +10,12 @@ export function ExerciseContextProvider({ children }) {
 
   const exerciseHandler = (id) => {
     setExerciseId(id);
-    localStorage.setItem("exercise", exerciseId);
+    sessionStorage.setItem("exercise", id);
   };
 
   const routineHandler = (id) => {
     setRoutineId(id);
-    localStorage.setItem("routine", id)
+    sessionStorage.setItem("routine", id)
   }
 
   const editRoutineHandler = () => {

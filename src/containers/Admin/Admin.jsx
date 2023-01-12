@@ -10,7 +10,7 @@ function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [show, setShow] = useState(false);
-  const token = localStorage.getItem("jwt");
+  const token = sessionStorage.getItem("jwt");
 
   const { decodedToken } = useJwt(token);
   const role = decodedToken?.role;

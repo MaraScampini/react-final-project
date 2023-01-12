@@ -16,7 +16,7 @@ function Exercises() {
   const { exerciseHandler, editingRoutine, routineId, editRoutineHandler } =
     useContext(ExerciseContext);
   const navigate = useNavigate();
-  const idRoutine = routineId || localStorage.getItem("routine");
+  const idRoutine = routineId || sessionStorage.getItem("routine");
 
   const [exercises, setExercises] = useState([]);
   const [filter, setFilter] = useState("");

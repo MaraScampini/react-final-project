@@ -9,7 +9,7 @@ import {
 } from "../../services/ApiCalls";
 
 function Routines() {
-  let token = localStorage.getItem("jwt");
+  let token = sessionStorage.getItem("jwt");
   const { routineHandler } = useContext(ExerciseContext);
   const navigate = useNavigate();
   const [routines, setRoutines] = useState([]);
@@ -55,17 +55,17 @@ function Routines() {
     e.preventDefault();
     newRoutine(body)
       .then((data) => routineHandler(data.id_routine))
-      .then(()=>getMyRoutines().then((data) => setRoutines(data)))
-      .then(setOpen(false))
-
+      .then(() => getMyRoutines().then((data) => setRoutines(data)))
+      .then(setOpen(false));
   };
 
   const deleteRoutineHandler = (id) => {
     let deleteBody = {
       routine: id,
     };
-    deleteRoutine(deleteBody)
-      .then(()=> getMyRoutines().then((data) => setRoutines(data)))
+    deleteRoutine(deleteBody).then(() =>
+      getMyRoutines().then((data) => setRoutines(data))
+    );
   };
 
   if (token) {
@@ -139,7 +139,11 @@ function Routines() {
       </Container>
     );
   } else {
-    return <div>LOG IN TO SEE YOUR ROUTINES</div>;
+    return (
+      <div className="lifterTitle d-flex justify-content-center">
+        LOG IN TO SEE YOUR ROUTINES
+      </div>
+    );
   }
 }
 
