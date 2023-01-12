@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
   deleteSet,
+  editRoutine,
   editSet,
   getRoutineById,
   getSetsByRoutine,
@@ -32,6 +33,8 @@ function RoutineDetail() {
     routine: idRoutine,
   });
   const [deleted, setDeleted] = useState(false);
+  const [editingName, setEditingName] = useState(false)
+  const [editBody, setEditBody] = useState({})
 
   let bodyAdd = {
     reps: 0,
@@ -47,6 +50,10 @@ function RoutineDetail() {
   useEffect(() => {
     getRoutineById(idRoutine).then((data) => setRoutine(data));
   }, [idRoutine]);
+
+    useEffect(() => {
+      getRoutineById(idRoutine).then((data) => setRoutine(data));
+    }, [editingName]);
 
   useEffect(() => {
     setExercises(routine?.exercises);
@@ -123,11 +130,48 @@ function RoutineDetail() {
       .then(deleted === true ? setDeleted(false) : setDeleted(true));
   };
 
+  const nameInputHandler = (e) => {
+    setEditBody({
+      name: e.target.value,
+      routine: idRoutine
+    })
+  }
+
+  const editNameHandler = (e) => {
+    e.preventDefault()
+    editRoutine(editBody).then(()=>setEditingName(false));
+  }
+
   return (
     <Container>
       <Row>
         <Col>
-          <p className="lifterTitle">{routine?.name}</p>
+          {editingName ? (
+            <Form onSubmit={(e) => editNameHandler(e)}>
+              <Form.Control
+                placeholder={routine?.name}
+                onChange={(e) => nameInputHandler(e)}
+              />
+              <Form.Group className="d-flex ">
+                <Button
+                  className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                  type="submit"
+                >
+                  ✓
+                </Button>
+                <Button
+                  className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                  onClick={() => setEditingName(false)}
+                >
+                  ✗
+                </Button>
+              </Form.Group>
+            </Form>
+          ) : (
+            <p className="lifterTitle" onClick={() => setEditingName(true)}>
+              {routine?.name}
+            </p>
+          )}
         </Col>
       </Row>
       <Row className="d-flex flex-column ">
@@ -140,62 +184,60 @@ function RoutineDetail() {
                   return set?.exerciseIdExercise === exercise?.id_exercise ? (
                     <div key={index}>
                       {editing && set.id_set === editing.set ? (
-                          <Form
-                            onSubmit={(e) => submitHandler(e)}
-                          >
-                        <Container className="setContainer">
-                          <Row className="d-flex align-items-center setRow">
-                            <Col xs="12" md="6" className="d-flex setColumn">
-                            <Form.Group className="d-flex align-items-center">
-                              <Form.Label>REPS</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name="reps"
-                                placeholder={set.reps}
-                                className="ms-3 me-3 lifterInput narrowInput "
-                                onChange={(e) =>
-                                  inputHandler(
-                                    e.target.name,
-                                    e.target.value,
-                                    set.id_set
-                                  )
-                                }
-                              ></Form.Control>
-                              <Form.Label>WEIGHT</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name="weight"
-                                placeholder={set.weight}
-                                className="ms-3 me-3 lifterInput narrowInput"
-                                onChange={(e) =>
-                                  inputHandler(
-                                    e.target.name,
-                                    e.target.value,
-                                    set.id_set
-                                  )
-                                }
-                              ></Form.Control>
-                            </Form.Group>
-                            </Col>
-                            <Col md="6" className="setColumn">
-                            <Form.Group className="d-flex ">
-                              <Button
-                                className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
-                                type="submit"
-                              >
-                                ✓
-                              </Button>
-                              <Button
-                                className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
-                                onClick={() => cancelEdit()}
-                              >
-                                ✗
-                              </Button>
-                            </Form.Group>
-                        </Col>
-                        </Row>
-                        </Container>
-                          </Form>
+                        <Form onSubmit={(e) => submitHandler(e)}>
+                          <Container className="setContainer">
+                            <Row className="d-flex align-items-center setRow">
+                              <Col xs="12" md="6" className="d-flex setColumn">
+                                <Form.Group className="d-flex align-items-center">
+                                  <Form.Label>REPS</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    name="reps"
+                                    placeholder={set.reps}
+                                    className="ms-3 me-3 lifterInput narrowInput "
+                                    onChange={(e) =>
+                                      inputHandler(
+                                        e.target.name,
+                                        e.target.value,
+                                        set.id_set
+                                      )
+                                    }
+                                  ></Form.Control>
+                                  <Form.Label>WEIGHT</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    name="weight"
+                                    placeholder={set.weight}
+                                    className="ms-3 me-3 lifterInput narrowInput"
+                                    onChange={(e) =>
+                                      inputHandler(
+                                        e.target.name,
+                                        e.target.value,
+                                        set.id_set
+                                      )
+                                    }
+                                  ></Form.Control>
+                                </Form.Group>
+                              </Col>
+                              <Col md="6" className="setColumn">
+                                <Form.Group className="d-flex ">
+                                  <Button
+                                    className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                    type="submit"
+                                  >
+                                    ✓
+                                  </Button>
+                                  <Button
+                                    className="mobileButton mt-0 ms-3 ms-lg-5 mb-4 mb-lg-0 narrow"
+                                    onClick={() => cancelEdit()}
+                                  >
+                                    ✗
+                                  </Button>
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                          </Container>
+                        </Form>
                       ) : (
                         <Container className="setContainer">
                           <Row className="d-flex align-items-center setRow">
