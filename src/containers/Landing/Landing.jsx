@@ -32,7 +32,15 @@ function Landing() {
               >
                 ROUTINES
               </Button>
-              <p className="lifterDownText">Consult our <span className="lifterLink whiteText">privacy policy</span></p>
+              <p className="lifterDownText">
+                Consult our{" "}
+                <a
+                  className="lifterLink whiteText"
+                  href="https://www.linkedin.com/in/mara-scampini/"
+                >
+                  privacy policy
+                </a>
+              </p>
             </div>
           ) : (
             <div className="d-flex flex-column align-items-center">
@@ -48,7 +56,6 @@ function Landing() {
                   className="lifterLink whiteText"
                   onClick={() => navigate("/login")}
                 >
-                  {" "}
                   Login
                 </p>
               </div>

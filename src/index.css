@@ -72,6 +72,7 @@ body {
   color: #db0000;
   cursor: pointer;
   font-family: Rubik Mono One;
+  text-decoration: none;
 }
 
 .lifterLink:hover {
@@ -80,6 +81,10 @@ body {
 
 .whiteText {
   color: white;
+}
+
+.whiteText:hover{
+  color: white
 }
 
 .lifterInput {

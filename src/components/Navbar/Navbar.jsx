@@ -19,7 +19,7 @@ const NavbarHeader = () => {
     <Navbar collapseOnSelect expand="lg" className="header">
       <Container fluid>
         <Navbar.Brand className="lifterLink" onClick={() => navigate("/")}>
-          <img src={logo} width="35" />
+          <img src={logo} width="35" alt="dumbbell" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

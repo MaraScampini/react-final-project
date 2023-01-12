@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const ExerciseContext = createContext();
 
@@ -21,8 +21,6 @@ export function ExerciseContextProvider({ children }) {
   const editRoutineHandler = () => {
     editingRoutine===true ? setEditingRoutine(false) : setEditingRoutine(true)
   }
-
-
 
   return (
     <ExerciseContext.Provider
