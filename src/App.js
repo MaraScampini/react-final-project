@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import NavbarHeader from "./components/Navbar/Navbar";
+import Admin from "./containers/Admin/Admin";
 import ExerciseDetail from "./containers/ExerciseDetail/ExerciseDetail";
 import Exercises from "./containers/Exercises/Exercises";
 import Landing from "./containers/Landing/Landing";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/ex_detail" element={<ExerciseDetail />} />
         <Route path="/routines" element={<Routines />} />
         <Route path="/r_detail" element={<RoutineDetail />} />
+        <Route path="/admin" element={<Admin/>}/>
       </Routes>
     </BrowserRouter>
   );

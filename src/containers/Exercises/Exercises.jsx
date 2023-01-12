@@ -27,8 +27,8 @@ function Exercises() {
 
   // PAGINATION
   const indexOfLastExercise = currentPage * perPage;
-  const indexOfFirstPost = indexOfLastExercise - perPage;
-  const currentExercises = exercises.slice(indexOfFirstPost, indexOfLastExercise)
+  const indexOfFirstExercise = indexOfLastExercise - perPage;
+  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise)
 
   useEffect(() => {
     getExercises().then((data) => setExercises(data));
@@ -114,7 +114,7 @@ function Exercises() {
               MATERIAL
             </Dropdown.Toggle>
 
-            <Dropdown.Menu className="exerciseCard">
+            <Dropdown.Menu className="lifterCard">
               <Dropdown.Item onClick={() => applyFilter("barbell")}>
                 Barbell
               </Dropdown.Item>
@@ -142,7 +142,7 @@ function Exercises() {
               MUSCLE
             </Dropdown.Toggle>
 
-            <Dropdown.Menu className="exerciseCard">
+            <Dropdown.Menu className="lifterCard">
               <Dropdown.Item onClick={() => applyFilter2("abdominals")}>
                 Abdominals
               </Dropdown.Item>
@@ -204,7 +204,7 @@ function Exercises() {
           return (
             <Col xs="12" md="6" lg="4" key={index} className="d-flex">
               <Container
-                className="exerciseCard"
+                className="lifterCard"
                 onClick={() => clickHandler(exercise.id_exercise)}
               >
                 <Row>

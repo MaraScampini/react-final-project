@@ -9,8 +9,8 @@ function Pagination({perPage, total, paginate}) {
   }
   return (
     <ul className="d-flex pagination">
-      {pageNumbers.map((n) => (
-        <li onClick={() => paginate(n)} className="page">
+      {pageNumbers.map((n, index) => (
+        <li key={index} onClick={() => paginate(n)} className="page">
           {n}
         </li>
       ))}

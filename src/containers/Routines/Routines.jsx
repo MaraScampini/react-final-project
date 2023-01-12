@@ -113,7 +113,7 @@ function Routines() {
                 key={index}
                 xs="11"
                 md="5"
-                className="exerciseCard mx-3 d-flex flex-column"
+                className="lifterCard mx-3 d-flex flex-column"
               >
                 <div onClick={() => clickHandler(routine.id_routine)}>
                   <p className="lifterText">{routine.name}</p>

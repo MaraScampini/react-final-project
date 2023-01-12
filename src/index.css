@@ -99,6 +99,26 @@ body {
   max-height: 3rem;
 }
 
+.lifterCard {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #db0000;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.lifterCard:hover {
+  box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1);
+}
+
+.noPointer {
+cursor:default;
+}
+
+.modal-backdrop.show {
+    opacity: 20% !important;
+}
+
 /* AUTHENTICATION */
 
 .authInput:focus {
@@ -184,17 +204,7 @@ body {
   color: #0f0f0f;
 }
 
-.exerciseCard {
-  margin: 1rem 0;
-  padding: 0.5rem;
-  border: 1px solid #db0000;
-  border-radius: 0 !important;
-  cursor: pointer;
-}
 
-.exerciseCard:hover {
-  box-shadow: 7px 5px 0px 0px rgba(219, 0, 0, 1);
-}
 
 /* EXERCISE DETAIL */
 

@@ -8,7 +8,8 @@ import logo from "../../assets/gym-near-svgrepo-com.svg";
 const NavbarHeader = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
-
+  const { decodedToken } = useJwt(token);
+  const role = decodedToken?.role;
   const logout = () => {
     localStorage.removeItem("jwt");
     navigate("/");
@@ -36,6 +37,13 @@ const NavbarHeader = () => {
               Exercises
             </Nav>
           </Nav>
+          {role === 1 ? (
+            <Nav className="lifterLink mx-3" onClick={() => navigate("/admin")}>
+              Admin
+            </Nav>
+          ) : (
+            <div></div>
+          )}
           {token ? (
             <Nav>
               <Nav

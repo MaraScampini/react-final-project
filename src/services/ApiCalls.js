@@ -232,3 +232,31 @@ export const deleteRoutine = async (body) => {
     console.error(error);
   }
 };
+
+export const getAllUsers = async () => {
+    const token = localStorage.getItem("jwt");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      let res = await axios.get(`${URL}user/all`, config);
+      let data = res.data.users;
+      console.log(data)
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+}
+
+export const deleteUser = async (body) => {
+  const token = localStorage.getItem("jwt");
+
+  try {
+    await axios.delete(`${URL}user/delete`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: body,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
