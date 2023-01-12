@@ -13,10 +13,10 @@ import {
 
 function RoutineDetail() {
   const { routineId, editRoutineHandler } = useContext(ExerciseContext);
-  let idRoutine = routineId 
-  if(!routineId) {
+  let idRoutine = routineId;
+  if (!routineId) {
     idRoutine = localStorage.getItem("routine");
-  } 
+  }
   const navigate = useNavigate();
 
   const [sets, setSets] = useState([]);
@@ -32,9 +32,8 @@ function RoutineDetail() {
     weight: "",
     routine: idRoutine,
   });
-  const [deleted, setDeleted] = useState(false);
-  const [editingName, setEditingName] = useState(false)
-  const [editBody, setEditBody] = useState({})
+  const [editingName, setEditingName] = useState(false);
+  const [editBody, setEditBody] = useState({});
 
   let bodyAdd = {
     reps: 0,
@@ -48,24 +47,20 @@ function RoutineDetail() {
   }, [routine]);
 
   useEffect(() => {
-    getRoutineById(idRoutine).then((data) => setRoutine(data));
-  }, [idRoutine]);
-
-    useEffect(() => {
-      getRoutineById(idRoutine).then((data) => setRoutine(data));
-    }, [editingName]);
-
-  useEffect(() => {
     setExercises(routine?.exercises);
   }, [routine]);
 
   useEffect(() => {
-    getSetsByRoutine(idRoutine).then((data) => setSets(data));
-  }, [editing]);
+    getRoutineById(idRoutine).then((data) => setRoutine(data));
+  }, [idRoutine]);
+
+  useEffect(() => {
+    getRoutineById(idRoutine).then((data) => setRoutine(data));
+  }, [editingName]);
 
   useEffect(() => {
     getSetsByRoutine(idRoutine).then((data) => setSets(data));
-  }, [deleted]);
+  }, [editing]);
 
   const editHandler = (set) => {
     setEditing({
@@ -119,6 +114,22 @@ function RoutineDetail() {
     );
   };
 
+  const checkIfExerciseInRoutine = (id) => {
+    sets.map((set) => {
+      if (set.id_set === id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+
+  const rechargeExercises = (id) => {
+    if (!checkIfExerciseInRoutine(id)) {
+      getRoutineById(idRoutine).then((data) => setRoutine(data));
+    }
+  };
+
   const deleteHandler = (setId) => {
     let deleteBody = {
       routine: parseInt(idRoutine),
@@ -126,21 +137,21 @@ function RoutineDetail() {
     };
 
     deleteSet(deleteBody)
-      .then(getSetsByRoutine(idRoutine).then((data) => setSets(data)))
-      .then(deleted === true ? setDeleted(false) : setDeleted(true));
+      .then(() => getSetsByRoutine(idRoutine).then((data) => setSets(data)))
+      .then(() => rechargeExercises(setId));
   };
 
   const nameInputHandler = (e) => {
     setEditBody({
       name: e.target.value,
-      routine: idRoutine
-    })
-  }
+      routine: idRoutine,
+    });
+  };
 
   const editNameHandler = (e) => {
-    e.preventDefault()
-    editRoutine(editBody).then(()=>setEditingName(false));
-  }
+    e.preventDefault();
+    editRoutine(editBody).then(() => setEditingName(false));
+  };
 
   return (
     <Container>
@@ -275,7 +286,7 @@ function RoutineDetail() {
                 })}
                 <div className="d-flex justify-content-center">
                   <Button
-                    className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-5 mb-4 mb-lg-3"
+                    className="lifterButton mt-0 mt-lg-4 ms-3 ms-lg-0 mb-4 mb-lg-3"
                     onClick={() => addSetHandler(exercise.id_exercise)}
                   >
                     ADD SET

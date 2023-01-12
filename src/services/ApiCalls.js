@@ -219,3 +219,16 @@ export const editRoutine = async (body) => {
     console.error(error);
   }
 }
+
+export const deleteRoutine = async (body) => {
+  const token = localStorage.getItem("jwt");
+
+  try {
+    await axios.delete(`${URL}routine/delete`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: body,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
