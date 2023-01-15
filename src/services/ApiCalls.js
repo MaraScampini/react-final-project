@@ -110,6 +110,8 @@ export const getExerciseByName = async (name) => {
 };
 
 export const getMyRoutines = async () => {
+    const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };

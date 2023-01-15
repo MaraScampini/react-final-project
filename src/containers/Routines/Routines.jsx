@@ -24,7 +24,7 @@ function Routines() {
     if (token) {
       getMyRoutines().then((data) => setRoutines(data));
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     if (isChecked) {
