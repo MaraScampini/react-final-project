@@ -1,7 +1,5 @@
 import axios from "axios";
 const URL = "https://backend-final-project-production.up.railway.app/";
-  const token = sessionStorage.getItem("jwt");
-
 
 export const userLogin = async (body) => {
   let res = await axios.post(`${URL}auth/login`, body);
@@ -15,6 +13,8 @@ export const userRegister = async (body) => {
 };
 
 export const getProfile = async () => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -28,6 +28,8 @@ export const getProfile = async () => {
 };
 
 export const editProfile = async (body) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -39,6 +41,8 @@ export const editProfile = async (body) => {
 };
 
 export const editPassword = async (body) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -50,6 +54,8 @@ export const editPassword = async (body) => {
 };
 
 export const getExercises = async () => {
+  const token = sessionStorage.getItem("jwt");
+
   try {
     let res = await axios.get(`${URL}exercise`);
     let data = res.data.exercises;
@@ -60,6 +66,8 @@ export const getExercises = async () => {
 };
 
 export const getExercisesByMaterial = async (material) => {
+  const token = sessionStorage.getItem("jwt");
+
   try {
     let res = await axios.get(`${URL}exercise/material/${material}`);
     let data = res.data.exercises;
@@ -110,7 +118,7 @@ export const getExerciseByName = async (name) => {
 };
 
 export const getMyRoutines = async () => {
-    const token = sessionStorage.getItem("jwt");
+  const token = sessionStorage.getItem("jwt");
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -125,6 +133,8 @@ export const getMyRoutines = async () => {
 };
 
 export const getSetsByRoutine = async (id) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -138,6 +148,8 @@ export const getSetsByRoutine = async (id) => {
 };
 
 export const getRoutineById = async (id) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -151,6 +163,8 @@ export const getRoutineById = async (id) => {
 };
 
 export const editSet = async (body) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -162,6 +176,8 @@ export const editSet = async (body) => {
 };
 
 export const newSet = async (body) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -175,11 +191,12 @@ export const newSet = async (body) => {
 };
 
 export const deleteSet = async (body) => {
-    
+  const token = sessionStorage.getItem("jwt");
+
   try {
     await axios.delete(`${URL}set/delete`, {
       headers: { Authorization: `Bearer ${token}` },
-      data: body
+      data: body,
     });
   } catch (error) {
     console.error(error);
@@ -187,19 +204,23 @@ export const deleteSet = async (body) => {
 };
 
 export const newRoutine = async (body) => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    try {
-      let res = await axios.post(`${URL}routine/new`, body, config);
-      let data = res.data.newRoutine;
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-}
+  const token = sessionStorage.getItem("jwt");
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    let res = await axios.post(`${URL}routine/new`, body, config);
+    let data = res.data.newRoutine;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const editRoutine = async (body) => {
+  const token = sessionStorage.getItem("jwt");
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -208,9 +229,10 @@ export const editRoutine = async (body) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const deleteRoutine = async (body) => {
+  const token = sessionStorage.getItem("jwt");
 
   try {
     await axios.delete(`${URL}routine/delete`, {
@@ -223,19 +245,22 @@ export const deleteRoutine = async (body) => {
 };
 
 export const getAllUsers = async () => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    try {
-      let res = await axios.get(`${URL}user/all`, config);
-      let data = res.data.users;
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-}
+  const token = sessionStorage.getItem("jwt");
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  try {
+    let res = await axios.get(`${URL}user/all`, config);
+    let data = res.data.users;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const deleteUser = async (body) => {
+  const token = sessionStorage.getItem("jwt");
 
   try {
     await axios.delete(`${URL}user/delete`, {
