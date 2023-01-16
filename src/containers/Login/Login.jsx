@@ -200,7 +200,7 @@ if (token) {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label className="lifterText">Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Password"
                 value={input.password}
@@ -220,7 +220,7 @@ if (token) {
               <Form.Group className="mb-3">
                 <Form.Label className="lifterText">Repeat password</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   name="password2"
                   placeholder="Enter your password"
                   className="lifterInput"
