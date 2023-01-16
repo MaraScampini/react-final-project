@@ -117,10 +117,10 @@ function Routines() {
               >
                 <div onClick={() => clickHandler(routine.id_routine)}>
                   <p className="lifterText">{routine.name}</p>
-                  <p className="resultsText">EXERCISES</p>
+                  <p className="lifterProfile">EXERCISES</p>
                   <ul>
                     {routine.exercises.map((exercise, index) => {
-                      return <li key={index}>{exercise.name}</li>;
+                      return <li key={index} className="lifterProfile blackText smallText">{exercise.name}</li>;
                     })}
                   </ul>
                 </div>

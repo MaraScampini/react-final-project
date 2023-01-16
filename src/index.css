@@ -70,6 +70,11 @@ body {
   font-family: Electrolize;
   font-size: 1.5rem;
   color: #db0000;
+  list-style:square;
+}
+
+.smallText{
+  font-size: 1rem;
 }
 
 .blackText {
