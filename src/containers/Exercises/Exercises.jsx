@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Dropdown, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 import Pagination from "../../components/Pagination/Pagination";
 import { ExerciseContext } from "../../context/ExerciseContext";
 import {
@@ -84,9 +85,9 @@ function Exercises() {
     }
   };
 
-  const inputHandler = (e) => {
+  const inputHandler = debounce((e) => {
     setCriteria(`${e.target.value}`);
-  };
+  }, 500);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
