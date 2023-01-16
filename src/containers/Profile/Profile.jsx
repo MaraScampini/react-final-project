@@ -92,18 +92,44 @@ function Profile() {
     <Container fluid className="lifterContainer py-3 px-md-5 px-4">
       <Row>
         <Col>
-        <div className="lifterTitle text-center">Hello, {userData.username}</div>
+          <div className="lifterTitle text-center">
+            Hello, {userData.username}
+          </div>
         </Col>
       </Row>
       {editing === false && editingPassword === false ? (
         <Row className="d-flex justify-content-center py-5">
           <Col xs="10" sm="4" lg="3">
-            <p>Username: {userData.username}</p>
-            <p>Name: {userData.name}</p>
-            <p>Surname: {userData.surname}</p>
-            <p>Age: {userData.age}</p>
-            <p>Address: {userData.address}</p>
-            <p>Email: {userData.email}</p>
+            <p className="lifterProfile">
+              USERNAME :{" "}
+              <span className="lifterProfile blackText">
+                {userData.username}
+              </span>
+            </p>
+            <p className="lifterProfile">
+              NAME:{" "}
+              <span className="lifterProfile blackText">{userData.name}</span>
+            </p>
+            <p className="lifterProfile">
+              SURNAME:{" "}
+              <span className="lifterProfile blackText">
+                {userData.surname}
+              </span>
+            </p>
+            <p className="lifterProfile">
+              AGE:{" "}
+              <span className="lifterProfile blackText">{userData.age}</span>
+            </p>
+            <p className="lifterProfile">
+              ADDRESS:{" "}
+              <span className="lifterProfile blackText">
+                {userData.address}
+              </span>
+            </p>
+            <p className="lifterProfile">
+              EMAIL:{" "}
+              <span className="lifterProfile blackText">{userData.email}</span>
+            </p>
           </Col>
           <Col xs="10" sm="3" className="d-flex flex-column align-items-center">
             <Button
@@ -125,7 +151,9 @@ function Profile() {
           <Row className="d-flex justify-content-center py-5 profileRow">
             <Col xs="10" sm="4" lg="3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="lifterText mt-2">Edit password</Form.Label>
+                <Form.Label className="lifterText mt-2">
+                  Edit password
+                </Form.Label>
                 <Form.Control
                   className="lifterInput"
                   name="password"
