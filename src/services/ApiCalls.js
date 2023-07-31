@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "https://backend-final-project-production.up.railway.app/";
+const URL = "https://backend-final-project-nine.vercel.app/";
 
 export const userLogin = async (body) => {
   let res = await axios.post(`${URL}auth/login`, body);

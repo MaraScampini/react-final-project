@@ -107,7 +107,7 @@ function Routines() {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
-          {routines.map((routine, index) => {
+          {routines?.map((routine, index) => {
             return (
               <Col
                 key={index}
